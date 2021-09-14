@@ -161,12 +161,16 @@ open class NativeBenchmarkExec() : DefaultTask() {
     lateinit var benchsDescriptionDir: File
 
     private fun execute(args: Collection<String>) {
+        logger.lifecycle("Going to execute $args")
+
         project.exec {
             it.executable = executable
             it.args(args)
             if (workingDir != null)
                 it.workingDir = workingDir
         }
+
+        logger.lifecycle("Finished execution of $args")
     }
 
     @ExperimentalPathApi
