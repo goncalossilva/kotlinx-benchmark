@@ -18,6 +18,8 @@ abstract class SuiteExecutor(val executionName: String, arguments: Array<out Str
     }
 
     fun run() {
+        println("additionalArguments: $additionalArguments")
+
         //println(config.toString())
         val include = if (config.include.isEmpty())
             listOf(Regex(".*"))
