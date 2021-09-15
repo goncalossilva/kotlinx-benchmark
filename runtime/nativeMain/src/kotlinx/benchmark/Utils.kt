@@ -46,6 +46,10 @@ internal fun writeFile(filePath: String, text: String) {
         }
         println("Wrote to the file")
     } finally {
+        println("finally block")
+        if (ferror(file) != 0) {
+            println("Error writing to file $filePath")
+        }
         fclose(file)
     }
 
