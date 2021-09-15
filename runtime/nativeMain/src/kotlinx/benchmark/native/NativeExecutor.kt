@@ -12,6 +12,8 @@ class NativeExecutor(name: String, args: Array<out String>) : SuiteExecutor(name
     private fun outputBenchmarks(runnerConfiguration: RunnerConfiguration,
                                  benchmarks: List<BenchmarkDescriptor<Any?>>,
                                  start: () -> Unit) {
+        println("NativeExecutor.outputBenchmarks(...)")
+
         start()
         benchmarks.forEach {
             val suite = it.suite
@@ -173,6 +175,8 @@ class NativeExecutor(name: String, args: Array<out String>) : SuiteExecutor(name
         start: () -> Unit,
         complete: () -> Unit
     ) {
+        println("NativeExecutor.run(...)")
+
         val knownActions = mapOf(
             "--list" to 2,
             "--store-results" to 2,

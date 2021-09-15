@@ -22,21 +22,31 @@ actual fun Double.format(precision: Int, useGrouping: Boolean): String {
 }
 
 actual fun saveReport(reportFile: String, report: String) {
+    println("Start saveReport(reportFile = ${reportFile})")
+
     val file = fopen(reportFile, "w")
     fputs(report, file)
     fclose(file)
+
+    println("Finish saveReport(reportFile = ${reportFile})")
 }
 
 internal fun writeFile(filePath: String, text: String) {
+    println("Start writeFile(filePath = ${filePath})")
+
     val file = fopen(filePath, "w")
     try {
         if (fputs(text, file) == EOF) throw Error("File write error")
     } finally {
         fclose(file)
     }
+
+    println("Finish writeFile(filePath = ${filePath})")
 }
 
 actual fun String.readFile(): String = buildString {
+    println("Start readFile(filePath = ${this@readFile})")
+
     val file = fopen(this@readFile, "rb")
     try {
         memScoped {
@@ -52,6 +62,8 @@ actual fun String.readFile(): String = buildString {
     } finally {
         fclose(file)
     }
+
+    println("Finish readFile(filePath = ${this@readFile})")
 }
 
 internal fun String.parseBenchmarkConfig(): NativeExecutor.BenchmarkRun {
