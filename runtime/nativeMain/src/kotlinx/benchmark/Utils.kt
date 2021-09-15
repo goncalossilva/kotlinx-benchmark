@@ -35,8 +35,16 @@ internal fun writeFile(filePath: String, text: String) {
     println("Start writeFile(filePath = ${filePath})")
 
     val file = fopen(filePath, "w")
+
+    println("Opened file for writing")
+
     try {
-        if (fputs(text, file) == EOF) throw Error("File write error")
+        if (fputs(text, file) == EOF) {
+            println("Couldn't write to the file")
+
+            throw Error("File write error")
+        }
+        println("Wrote to the file")
     } finally {
         fclose(file)
     }
