@@ -176,6 +176,13 @@ open class NativeBenchmarkExec() : DefaultTask() {
     @ExperimentalPathApi
     @TaskAction
     fun run() {
+        println("Start NativeBenchmarkExec.run()")
+        val testFile = benchsDescriptionDir.resolveSibling("sibling").also { it.mkdirs() }.resolve("1234.txt")
+        println("Write to ${testFile.absolutePath}")
+        testFile.writeText("1234")
+        println("Finished writing")
+
+
         // Get full list of running benchmarks
         execute(listOf(configFile.absolutePath, "--list", benchsDescriptionDir.absolutePath))
         val detailedConfigFiles = project.fileTree(benchsDescriptionDir).files.sortedBy { it.absolutePath }

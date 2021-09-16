@@ -13,6 +13,12 @@ class NativeExecutor(name: String, args: Array<out String>) : SuiteExecutor(name
                                  benchmarks: List<BenchmarkDescriptor<Any?>>,
                                  start: () -> Unit) {
         println("NativeExecutor.outputBenchmarks(...)")
+        val reportsDir = additionalArguments[1].dropLastWhile { it != '/' } + "sibling"
+        println("reportsDir = $reportsDir")
+        val testFile = "$reportsDir/1234.txt"
+        println("Reading 1234.txt: ${testFile.readFile()}")
+        writeFile(testFile, "abcd")
+
 
         start()
         benchmarks.forEach {
