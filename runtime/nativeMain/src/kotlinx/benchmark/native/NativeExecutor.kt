@@ -21,17 +21,17 @@ class NativeExecutor(name: String, args: Array<out String>) : SuiteExecutor(name
 
 
         start()
+        var parametersId = 0
         benchmarks.forEach {
             val suite = it.suite
             val config = BenchmarkConfiguration(runnerConfiguration, suite)
-            var parametersId = 0
             runWithParameters(suite.parameters, runnerConfiguration.params, suite.defaultParameters) { params ->
                 val benchmarkRunConfig = buildString {
                     appendLine("benchmark: ${it.name}")
                     appendLine("configuration: $config")
                     appendLine("parameters: $params")
                 }
-                val fileName = "${additionalArguments[1]}/${suite.name.toLowerCase()}-${it.name.toLowerCase().replace('.', '-')}-$parametersId.txt"
+                val fileName = "${additionalArguments[1]}/benchmark$parametersId.txt"
                 writeFile(fileName, benchmarkRunConfig)
                 parametersId++
             }
