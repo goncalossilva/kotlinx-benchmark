@@ -182,6 +182,8 @@ open class NativeBenchmarkExec() : DefaultTask() {
         testFile.writeText("1234")
         println("Finished writing")
 
+        benchsDescriptionDir.mkdirs()
+
 
         // Get full list of running benchmarks
         execute(listOf(configFile.absolutePath, "--list", benchsDescriptionDir.absolutePath))
