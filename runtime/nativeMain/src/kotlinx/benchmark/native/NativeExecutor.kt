@@ -15,8 +15,8 @@ class NativeExecutor(name: String, args: Array<out String>) : SuiteExecutor(name
         println("NativeExecutor.outputBenchmarks(...)")
         val reportsDir = additionalArguments[1].dropLastWhile { it != '/' } + "sibling"
         println("reportsDir = $reportsDir")
-        val testFile = "$reportsDir/12.34.txt"
-        println("Reading 12.34.txt: ${testFile.readFile()}")
+        val testFile = "$reportsDir/12_34.txt"
+        println("Reading 12_34.txt: ${testFile.readFile()}")
         writeFile(testFile, "abcd")
 
 

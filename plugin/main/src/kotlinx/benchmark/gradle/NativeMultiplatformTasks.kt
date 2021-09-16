@@ -177,7 +177,7 @@ open class NativeBenchmarkExec() : DefaultTask() {
     @TaskAction
     fun run() {
         println("Start NativeBenchmarkExec.run()")
-        val testFile = benchsDescriptionDir.resolveSibling("sibling").also { it.mkdirs() }.resolve("12.34.txt")
+        val testFile = benchsDescriptionDir.resolveSibling("sibling").also { it.mkdirs() }.resolve("12_34.txt")
         println("Write to ${testFile.absolutePath}")
         testFile.writeText("1234")
         println("Finished writing")
