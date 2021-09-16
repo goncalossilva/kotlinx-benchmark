@@ -31,7 +31,7 @@ class NativeExecutor(name: String, args: Array<out String>) : SuiteExecutor(name
                     appendLine("configuration: $config")
                     appendLine("parameters: $params")
                 }
-                val fileName = "${additionalArguments[1]}/${suite.name}_${it.name}_$parametersId.txt"
+                val fileName = "${additionalArguments[1]}/${suite.name.toLowerCase()}-${it.name.toLowerCase().replace('.', '-')}-$parametersId.txt"
                 writeFile(fileName, benchmarkRunConfig)
                 parametersId++
             }
