@@ -45,8 +45,7 @@ fun main(args: Array<String>) {
     val jvmArgs = runtimeMXBean.inputArguments
     when {
         jvmArgs.any { it.contains("libasyncProfiler") } -> jmhOptions.forks(0)
-        config.forks == null -> jmhOptions.forks(1)
-        config.forks > 0 -> jmhOptions.forks(config.forks)
+        config.forks != null && config.forks > 0 -> jmhOptions.forks(config.forks)
     }
 
     val reportFormat = ResultFormatType.valueOf(config.reportFormat.uppercase())
